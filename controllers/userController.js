@@ -15,7 +15,7 @@ module.exports = {
                 res.sendStatus(403);
             } else {
                 res.json({
-                    message: 'Post created...',
+                    message: 'Markers listed',
                     authData
                 });
             }
@@ -62,22 +62,38 @@ module.exports = {
 
 
     userLogin(req, res) {
-        // const { userInfo } = req;
+        const { body } = req;
 
-        // if (!userInfo && !userInfo._id) {
-        //     res.status(400).json(null)
-        // }
+        console.log(body)
 
-        // const payload = {
-        //     id: userInfo._id
-        // }
+        console.log(body.username)
+        console.log(body.password)
+
+        db.User.find({username: body.username, password: body.password})
+        .then(user => {
+
+            console.log(user)
 
 
-        // jwt.sign(payload, jwtSecret, (err, token) => {
-        //     res.status(200).json({ token })
-        // })
 
-        res.json("user route hit")
-    }
+            const payload = {
+                id: user[0]._id
+            }
+    
+    
+            jwt.sign(payload, jwtSecret, (err, token) => {
 
-};
+                console.log(token)
+
+                if (err) {
+                    res.status(200).json(err)
+                }
+
+                res.status(200).json(token)
+            })
+        })
+        .catch(error => res.status(404).json(error))
+
+}
+
+}
