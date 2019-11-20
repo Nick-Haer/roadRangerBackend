@@ -13,7 +13,10 @@ module.exports = {
 
     const {body} = req;
 
-    db.Marker.create(body);
+    console.log("made marker " + body.title)
+
+    db.Marker.create(body)
+    .catch(err => console.log(err)) 
   },
 
   //

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MarkerSchema = new Schema({
-  latitude: {type: Number, required: true},
+  latitude: {type: Number, required: true, unique: true},
   longitude: {type: Number, required: true},
   title: {type: String, required: true},
   classification: {type: String},
