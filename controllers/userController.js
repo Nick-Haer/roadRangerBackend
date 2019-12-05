@@ -2,7 +2,7 @@ const db = require('../Models');
 
 const jwt = require("jsonwebtoken")
 
-const jwtSecret = "iendveijsdfmxw"
+const jwtSecret = "iendveijsdfmxw324234"
 
 
 
