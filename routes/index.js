@@ -4,7 +4,7 @@ const apiRoutes = require('./apiRoutes');
 
 router.use('/api', apiRoutes);
 
-router.route('/', (req, res) => {
+router.route('/').get((req, res) => {
   res.json('Hullo');
 });
 
