@@ -15,11 +15,14 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-// app.use(routing);
+app.use(routing);
 
-// mongoose.connect(
-//   process.env.MONGODB_URI || "mongodb://localhost/roadRangerdb",
-// );
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    'mongodb://<dbuser>:<dbpassword>@ds259079.mlab.com:59079/heroku_x64n8r5l'
+);
+
+// mongodb://localhost/roadRangerdb
 
 app.get('/', (req, res) => {
   res.json('gotcha');
