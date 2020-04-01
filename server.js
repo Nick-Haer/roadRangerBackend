@@ -18,14 +18,19 @@ if (process.env.NODE_ENV === 'production') {
 app.use(routing);
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
-    'mongodb://<dbuser>:<dbpassword>@ds259079.mlab.com:59079/heroku_x64n8r5l'
+  process.env.MONGODB_URI || 'mongodb://localhost/roadRangerdb',
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  }
 );
 
-// mongodb://localhost/roadRangerdb
+// ('mongodb://<dbuser>:<dbpassword>@ds259079.mlab.com:59079/heroku_x64n8r5l');
 
 app.get('/', (req, res) => {
-  res.json('gotcha');
+  res.status(200).json('connected');
 });
 
 app.listen(PORT, function() {
